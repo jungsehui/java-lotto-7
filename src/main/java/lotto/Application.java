@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -24,5 +25,13 @@ public class Application {
             System.out.println(lotto.getNumbers());
             lottos.add(lotto);
         }
+
+        System.out.println(Message.WINNING_NUMBERS.getMessage());
+        String inputWinningNumber = Console.readLine();
+        List<Integer> winningNumberTokens = Arrays.stream(inputWinningNumber.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+        Lotto userLotto = new Lotto(winningNumberTokens);
     }
 }
