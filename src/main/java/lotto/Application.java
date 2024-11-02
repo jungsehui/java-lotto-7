@@ -33,5 +33,9 @@ public class Application {
                 .map(Integer::parseInt)
                 .toList();
         Lotto userLotto = new Lotto(winningNumberTokens);
+
+        System.out.println(Message.BONUS_NUMBER.getMessage());
+        String inputBonusNumber = Console.readLine();
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
     }
 }
