@@ -1,41 +1,13 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import lotto.play.LottoResult;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println(Message.PURCHASE_PRICE.getMessage());
-        String inputPurchasePrice = Console.readLine();
-
-        if (Integer.parseInt(inputPurchasePrice) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 값을 입력하였습니다. 구입 금액은 1,000원 단위로 입력해 주세요");
-        }
-
-        int purchaseQuantity = Integer.parseInt(inputPurchasePrice) / 1000;
-        System.out.println("\n" + purchaseQuantity + Message.PURCHASE_QUANTITY.getMessage());
-
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseQuantity; i++) {
-            Lotto lotto = new Lotto(Lotto.create());
-            System.out.println(lotto.getNumbers());
-            lottos.add(lotto);
-        }
-
-        System.out.println(Message.WINNING_NUMBERS.getMessage());
-        String inputWinningNumber = Console.readLine();
-        List<Integer> winningNumberTokens = Arrays.stream(inputWinningNumber.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
-        Lotto userLotto = new Lotto(winningNumberTokens);
-
-        System.out.println(Message.BONUS_NUMBER.getMessage());
-        String inputBonusNumber = Console.readLine();
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        LottoResult lottoResult = new LottoResult(new InputView(), new OutputView());
+        lottoResult.start();
     }
 }
